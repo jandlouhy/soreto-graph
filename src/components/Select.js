@@ -23,7 +23,7 @@ export default class Select extends React.Component {
             .map((option) => option.id);
 
         return (
-            <label>
+            <label className={this.props.labelClass}>
                 {this.props.label}
                 <select name={this.props.id}
                         onChange={this.handleSelectChange}

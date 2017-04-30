@@ -25,9 +25,11 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.1",
+    "chart.js": "^2.4.0",
     "moment": "^2.17.1",
     "react": "^15.5.4",
     "react-addons-shallow-compare": "^15.5.2",
+    "react-chartjs-2": "git://github.com/gor181/react-chartjs-2.git#rc-2.1.0",
     "react-dates": "^10.1.1",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",

@@ -10,12 +10,12 @@ export default class FilterGroup extends React.Component {
                 if (filter.values) {
                     const options = filter.values.filter((option) => option.visible);
                     if (options.length > 0) {
-                        return <Select key={filter.id} id={filter.id} label={filter.label} options={options}/>;
+                        return <Select key={filter.id} labelClass="col-xs-12 col-sm-4 form-group" id={filter.id} label={filter.label} options={options}/>;
                     }
                 }
                 break;
             case 'daterange':
-                return <DateRange key={filter.id}/>;
+                return <DateRange key={filter.id} labelClass="col-xs-12 form-group" label={filter.label}/>;
         }
     }
 
@@ -31,7 +31,7 @@ export default class FilterGroup extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="row">
                 {this.getFilters()}
             </div>
         );
