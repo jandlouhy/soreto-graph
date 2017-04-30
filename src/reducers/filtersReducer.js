@@ -1,4 +1,4 @@
-import {createFilter, reduceFilter} from "../helpers/filter";
+import {createFilter, reduceFilter} from "../utils/filter";
 
 export default function filtersReducer(state = {
     fetching: false,
