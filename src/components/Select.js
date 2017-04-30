@@ -29,7 +29,8 @@ export default class Select extends React.Component {
         return (
             <label>
                 {this.props.label}
-                <select name={this.props.id} onChange={this.handleSelectChange} multiple defaultValue={selected} className="form-control">
+                <select name={this.props.id} onChange={this.handleSelectChange} multiple defaultValue={selected}
+                        className="form-control">
                     {options}
                 </select>
             </label>

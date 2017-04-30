@@ -1,6 +1,6 @@
 import React from "react";
 
-import Select from "./Select"
+import Select from "./Select";
 
 export default class FilterGroup extends React.Component {
     createFilterComponent(filter) {
@@ -13,7 +13,7 @@ export default class FilterGroup extends React.Component {
         }
     }
 
-    getFilters(filter=this.props.filters) {
+    getFilters(filter = this.props.filters) {
         if (filter && filter.values) {
             if (filter.children) {
                 return [this.createFilterComponent(filter), ...this.getFilters(filter.children)];
