@@ -25,7 +25,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.1",
+    "babel-polyfill": "^6.23.0",
     "chart.js": "^2.4.0",
+    "jquery": "^3.2.1",
     "moment": "^2.17.1",
     "react": "^15.5.4",
     "react-addons-shallow-compare": "^15.5.2",
@@ -33,6 +35,7 @@
     "react-dates": "^10.1.1",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
+    "react-select": "^1.0.0-rc.3",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.0",
     "redux-promise-middleware": "^4.2.0"

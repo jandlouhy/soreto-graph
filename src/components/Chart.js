@@ -4,80 +4,70 @@ import {Bar} from "react-chartjs-2";
 export default class Chart extends React.Component {
     render() {
         const data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ["8", "7", "9", "11", "10"],
             datasets: [{
-                label: 'Sales',
-                type: 'line',
-                data: [51, 65, 40, 49, 60, 37, 40],
+                type: "line",
+                label: "Acumulado",
+                borderColor: "#BA1E14",
+                backgroundColor: "#BA1E14",
+                pointBorderWidth: 5,
                 fill: false,
-                borderColor: '#EC932F',
-                backgroundColor: '#EC932F',
-                pointBorderColor: '#EC932F',
-                pointBackgroundColor: '#EC932F',
-                pointHoverBackgroundColor: '#EC932F',
-                pointHoverBorderColor: '#EC932F',
+                data: [34.04, 57.45, 76.60, 89.36, 100.00],
                 yAxisID: 'y-axis-2'
             }, {
-                type: 'bar',
-                label: 'Visitor',
-                data: [200, 185, 590, 621, 250, 400, 95],
-                fill: false,
-                backgroundColor: '#71B37C',
-                borderColor: '#71B37C',
-                hoverBackgroundColor: '#71B37C',
-                hoverBorderColor: '#71B37C',
+                type: "bar",
+                label: "Asistencia",
+                borderColor: "#56B513",
+                backgroundColor: "#56B513",
+                data: [16, 11, 9, 6, 50],
+                yAxisID: 'y-axis-1'
+            }, {
+                type: "bar",
+                label: "Solución",
+                borderColor: "#000FAA",
+                backgroundColor: "#000FAA",
+                data: [16, 11, 9, 6, 5],
                 yAxisID: 'y-axis-1'
             }]
         };
 
         const options = {
-            responsive: true,
-            tooltips: {
-                mode: 'label'
-            },
-            elements: {
-                line: {
-                    fill: false
-                }
-            },
             scales: {
-                xAxes: [
-                    {
+                xAxes: [{
+                    stacked: true,
+                    scaleLabel: {
                         display: true,
-                        gridLines: {
-                            display: false
-                        },
-                        labels: {
-                            show: true
-                        }
+                        labelString: "Estaciones"
                     }
-                ],
-                yAxes: [
-                    {
-                        type: 'linear',
+                }],
+
+                yAxes: [{
+                    type: "linear",
+                    position: "left",
+                    id: "y-axis-1",
+                    stacked: true,
+                    ticks: {
+                        suggestedMin: 0
+                    },
+                    scaleLabel: {
                         display: true,
-                        position: 'left',
-                        id: 'y-axis-1',
-                        gridLines: {
-                            display: false
-                        },
-                        labels: {
-                            show: true
+                        labelString: "Minutos"
+                    }
+                }, {
+                    type: "linear",
+                    position: "right",
+                    id: "y-axis-2",
+                    ticks: {
+                        suggestedMin: 0,
+                        callback: function (value) {
+                            return value + "%";
                         }
                     },
-                    {
-                        type: 'linear',
+                    scaleLabel: {
                         display: true,
-                        position: 'right',
-                        id: 'y-axis-2',
-                        gridLines: {
-                            display: false
-                        },
-                        labels: {
-                            show: true
-                        }
+                        labelString: "Porcentaje"
                     }
-                ]
+                }]
             }
         };
 

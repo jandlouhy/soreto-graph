@@ -1,21 +1,36 @@
 import React from "react";
 
 import Select from "./Select";
+import MultiSelect from "./MultiSelect";
 import DateRange from "./DateRange";
+import Radio from "./Radio";
 
 export default class FilterGroup extends React.Component {
     createFilterComponent(filter) {
+        const options = filter.values ? filter.values.filter((option) => option.visible) : [];
         switch (filter.type) {
+            case 'radio':
+                return <Radio key={filter.id}
+                               labelClass="col-xs-12 col-sm-4 form-group"
+                               id={filter.id}
+                               label={filter.label}
+                               options={options}/>;
             case 'select':
-                if (filter.values) {
-                    const options = filter.values.filter((option) => option.visible);
-                    if (options.length > 0) {
-                        return <Select key={filter.id} labelClass="col-xs-12 col-sm-4 form-group" id={filter.id} label={filter.label} options={options}/>;
-                    }
-                }
-                break;
+                return <Select key={filter.id}
+                               labelClass="col-xs-12 col-sm-4 form-group"
+                               id={filter.id}
+                               label={filter.label}
+                               options={options}/>;
+            case 'multiselect':
+                return <MultiSelect key={filter.id}
+                               labelClass="col-xs-12 col-sm-4 form-group"
+                               id={filter.id}
+                               label={filter.label}
+                               options={options}/>;
             case 'daterange':
-                return <DateRange key={filter.id} labelClass="col-xs-12 form-group" label={filter.label}/>;
+                return <div key={filter.id} className="col-xs-12 form-group">
+                    <DateRange label={filter.label}/>
+                </div>;
         }
     }
 
@@ -30,10 +45,10 @@ export default class FilterGroup extends React.Component {
     }
 
     render() {
-        return (
-            <div className="row">
-                {this.getFilters()}
-            </div>
-        );
+        const filters = this.getFilters();
+
+        return <div className="row">
+            {filters}
+        </div>;
     }
 }

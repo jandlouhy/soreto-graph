@@ -33,7 +33,7 @@ export default class DateRange extends React.Component {
             isOutsideRange: (day) => false,
         };
 
-        return <label className={this.props.labelClass}>
+        return <label>
             {this.props.label}
             <div>
                 <DateRangePicker

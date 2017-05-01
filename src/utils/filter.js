@@ -1,6 +1,12 @@
 export function createFilter(filter) {
     if (filter.values) {
-        filter.values = filter.values.map((value) => ({...value, visible: true, selected: false}));
+        filter.values = filter.values.map((value) => ({
+            label: value.title,
+            value: value.id,
+            children: value.children,
+            visible: true,
+            selected: false
+        }));
     }
 
     if (filter.children) {
@@ -16,11 +22,11 @@ export function reduceFilter(payload, filter, values) {
     if (filter.id === payload.filter) {
         values = filter.values.map((value) => ({
             ...value,
-            selected: typeof (payload.values.find((option) => option === value.id)) !== 'undefined'
+            selected: typeof (payload.values.find((option) => option.value === value.value)) !== 'undefined'
         }));
     }
 
-    if (children.values) {
+    if (children && children.values) {
         children = reduceFilter(payload, children, reduceFilterChildrenValues(values, children));
     }
 
@@ -38,9 +44,11 @@ function reduceFilterChildrenValues(parentValues, children) {
     const selectedValues = visibleValues.filter((option) => option.selected);
     if (selectedValues.length > 0) {
         return createOptionsBySelectedValues(values, selectedValues);
+    } else if (visibleValues.length > 0) {
+        return createOptionsBySelectedValues(values, visibleValues);
     }
 
-    return values.map((value) => ({...value, visible: true}));
+    return values.map((value) => ({...value, visible: false}));
 }
 
 function createOptionsBySelectedValues(options, selectedValues) {
@@ -53,7 +61,7 @@ function createOptionsBySelectedValues(options, selectedValues) {
     });
 
     return options.map((option) => {
-        if (allowedChildrenOptions[option.id]) {
+        if (allowedChildrenOptions[option.value]) {
             return {...option, visible: true};
         } else {
             return {...option, visible: false, selected: false};

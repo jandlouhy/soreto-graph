@@ -3,7 +3,7 @@ import axios from 'axios'
 export function fetchFilters() {
     return {
         type: 'FETCH_FILTERS',
-        payload: axios.get('http://www.mocky.io/v2/58f66708260000c5254adb49')
+        payload: axios.get('http://www.mocky.io/v2/59076d46100000b0129bd7f9') // /Chart/GetFilters
     };
 }
 

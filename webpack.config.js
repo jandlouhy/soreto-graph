@@ -1,7 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-    entry: './src/client.js',
+    entry: ["babel-polyfill", './src/client.js'],
     output: {
         filename: 'script.min.js',
         path: path.resolve(__dirname, 'dist')
@@ -18,5 +19,8 @@ module.exports = {
                 use: [ 'style-loader', 'css-loader' ]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /cs/)
+    ]
 };
