@@ -3,6 +3,7 @@ import {createFilter, reduceFilter} from "../utils/filter";
 export default function filtersReducer(state = {
     fetching: false,
     fetched: false,
+    visible: false,
     filters: [],
     error: null
 }, action) {
@@ -33,6 +34,12 @@ export default function filtersReducer(state = {
                 ...state,
                 filters: state.filters.map((filter) => reduceFilter(action.payload, filter, filter.values))
             };
+        }
+        case 'FILTERS_TOGGLE': {
+            return {
+                ...state,
+                visible: action.payload.visible
+            }
         }
     }
     return state;

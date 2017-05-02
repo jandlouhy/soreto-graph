@@ -7,7 +7,8 @@ import Layout from "./components/Layout";
 import store from "./store";
 
 import "react-dates/lib/css/_datepicker.css";
-import 'react-select/dist/react-select.css';
+import "react-select/dist/react-select.css";
+import "loaders.css/loaders.min.css";
 
 const app = document.getElementById('app');
 

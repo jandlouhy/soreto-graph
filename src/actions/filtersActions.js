@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios";
 
 export function fetchFilters() {
     return {
@@ -15,4 +15,24 @@ export function changeFilter(filter, values) {
             values: values
         }
     }
+}
+
+export function showFilters() {
+    return {
+        type: 'FILTERS_TOGGLE',
+        payload: {
+            visible: true
+        }
+    }
+
+}
+
+export function hideFilters() {
+    return {
+        type: 'FILTERS_TOGGLE',
+        payload: {
+            visible: false
+        }
+    }
+
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class FilterButton extends React.Component {
+export default class SubmitFilterButton extends React.Component {
     render() {
         return <button className="btn btn-success">
             Vyfiltrovat

@@ -5,7 +5,7 @@ import MultiSelect from "./MultiSelect";
 import DateRange from "./DateRange";
 import Radio from "./Radio";
 
-export default class FilterGroup extends React.Component {
+export default class Filter extends React.Component {
     createFilterComponent(filter) {
         const options = filter.values ? filter.values.filter((option) => option.visible) : [];
         switch (filter.type) {

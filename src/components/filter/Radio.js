@@ -1,8 +1,8 @@
 import React from "react";
 import ReactSelect from "react-select";
 
-import store from "../store";
-import {changeFilter} from "../actions/filtersActions";
+import store from "../../store";
+import {changeFilter} from "../../actions/filtersActions";
 
 export default class Select extends React.Component {
     handleSelectChange(values) {
