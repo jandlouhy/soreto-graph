@@ -20,10 +20,11 @@ export function reduceFilter(payload, filter, values) {
     let children = filter.children;
 
     if (filter.id === payload.filter) {
-        values = filter.values.map((value) => ({
+        values = filter.values.map((value) => {
+            return {
             ...value,
-            selected: typeof (payload.values.find((option) => option.value === value.value)) !== 'undefined'
-        }));
+            selected: typeof (payload.values.find((option) => option === value.value)) !== 'undefined'
+        }});
     }
 
     if (children && children.values) {

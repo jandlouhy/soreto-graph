@@ -7,16 +7,17 @@ import Radio from "./Radio";
 
 export default class Filter extends React.Component {
     createFilterComponent(filter) {
+        const {id, label} = filter;
         const options = filter.values ? filter.values.filter((option) => option.visible) : [];
         switch (filter.type) {
             case 'radio':
-                return <Radio key={filter.id} id={filter.id} label={filter.label} options={options}/>;
+                return <Radio key={id} id={id} label={label} options={options}/>;
             case 'select':
-                return <Select key={filter.id} id={filter.id} label={filter.label} options={options}/>;
+                return <Select key={id} id={id} label={label} options={options}/>;
             case 'multiselect':
-                return <MultiSelect key={filter.id} id={filter.id} label={filter.label} options={options}/>;
+                return <MultiSelect key={id} id={id} label={label} options={options}/>;
             case 'daterange':
-                return <DateRange key={filter.id} id={filter.id} label={filter.label} startDate={filter.startDate} endDate={filter.endDate}/>;
+                return <DateRange key={id} id={id} label={label} startDate={filter.startDate} endDate={filter.endDate}/>;
         }
     }
 

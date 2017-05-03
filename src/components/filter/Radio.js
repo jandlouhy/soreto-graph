@@ -9,11 +9,12 @@ export default class Select extends React.Component {
     }
 
     render() {
+        const {id, label} = this.props;
         const options = this.props.options.map((option) => (
             <label key={option.value} className="radio-inline">
                 <input type="radio"
                        value={option.value}
-                       name={this.props.id}
+                       name={id}
                 />
                 {option.label}
             </label>
@@ -21,7 +22,7 @@ export default class Select extends React.Component {
 
         return (
             <div className="col-xs-12 col-sm-4 form-group">
-                {this.props.label}
+                {label}
                 <div onChange={this.handleSelectChange.bind(this)}>
                     {options}
                 </div>

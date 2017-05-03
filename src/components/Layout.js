@@ -16,18 +16,23 @@ import FilterContainer from "./filter/FilterContainer";
 })
 export default class Layout extends React.Component {
     componentWillMount() {
-        if (!this.props.filters.fetched && !this.props.filters.fetching) {
+        const {filters, graph} = this.props;
+
+        if (!filters.fetched && !filters.fetching) {
             store.dispatch(fetchFilters())
         }
-        if (!this.props.graph.fetched && !this.props.graph.fetching) {
+
+        if (!graph.fetched && !graph.fetching) {
             store.dispatch(fetchGraph())
         }
     }
 
     render() {
+        const {filters, graph} = this.props;
+
         return <div>
-            <FilterContainer filters={this.props.filters}/>
-            <Chart graph={this.props.graph}/>
+            <FilterContainer filters={filters}/>
+            <Chart graph={graph}/>
         </div>;
     }
 }

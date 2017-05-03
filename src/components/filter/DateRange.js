@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 
 import store from "../../store";
 import {changeFilterDate} from "../../actions/filtersActions";
@@ -26,6 +25,7 @@ export default class DateRange extends React.Component {
 
     render() {
         const {focusedInput} = this.state;
+        const {label, startDate, endDate} = this.props;
 
         const props = {
             minimumNights: 0,
@@ -36,15 +36,15 @@ export default class DateRange extends React.Component {
 
         return <div className="col-xs-12 form-group">
             <label>
-                {this.props.label}
+                {label}
                 <div>
                     <DateRangePicker
                         {...props}
                         onDatesChange={this.onDatesChange}
                         onFocusChange={this.onFocusChange}
                         focusedInput={focusedInput}
-                        startDate={this.props.startDate}
-                        endDate={this.props.endDate}
+                        startDate={startDate}
+                        endDate={endDate}
                     />
                 </div>
             </label>

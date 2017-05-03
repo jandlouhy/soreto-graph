@@ -10,15 +10,16 @@ export default class MultiSelect extends React.Component {
     }
 
     render() {
-        const selected = this.props.options.filter((option) => option.selected);
+        const {id, label, options} = this.props;
+        const selected = options.filter((option) => option.selected);
 
         return (
             <label className="col-xs-12 col-sm-4 form-group">
-                {this.props.label}
+                {label}
                 <ReactSelect onChange={this.handleSelectChange}
-                             name={this.props.id}
+                             name={id}
                              multi
-                             options={this.props.options}
+                             options={options}
                              value={selected}
                              placeholder="Všechny hodnoty"
                              noResultsText="Žádná možnost nenalezena"
