@@ -22,7 +22,7 @@ export function reduceFilter(payload, filter, values) {
     if (filter.id === payload.filter) {
         values = filter.values.map((value) => ({
             ...value,
-            selected: typeof (payload.values.find((option) => option && option.value === value.value)) !== 'undefined'
+            selected: typeof (payload.values.find((option) => option.value === value.value)) !== 'undefined'
         }));
     }
 

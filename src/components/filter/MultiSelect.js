@@ -6,7 +6,7 @@ import {changeFilter} from "../../actions/filtersActions";
 
 export default class MultiSelect extends React.Component {
     handleSelectChange(values) {
-        store.dispatch(changeFilter(this.name, values));
+        store.dispatch(changeFilter(this.name, values.map((value) => value.value)));
     }
 
     render() {

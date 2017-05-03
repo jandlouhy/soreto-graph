@@ -1,20 +1,11 @@
 import React from "react";
 
-import store from "../../store";
-import {fetchFilters} from "../../actions/filtersActions";
-
 import Filter from "./Filter";
 import Loading from "../Loading";
 import ToggleFiltersButton from "./ToggleFiltersButton";
 import SubmitFiltersButton from "./SubmitFilterButton";
 
 export default class FilterContainer extends React.Component {
-    componentWillMount() {
-        if (!this.props.filters.fetched && !this.props.filters.fetched) {
-            store.dispatch(fetchFilters())
-        }
-    }
-
     render() {
         if (this.props.filters.fetching) {
             return <Loading />;

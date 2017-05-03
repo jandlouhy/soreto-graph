@@ -4,9 +4,8 @@ import store from "../../store";
 import {changeFilter} from "../../actions/filtersActions";
 
 export default class Select extends React.Component {
-    handleSelectChange(value) {
-        console.log(value);
-        store.dispatch(changeFilter(this.props.id, [value]));
+    handleSelectChange(event) {
+        store.dispatch(changeFilter(this.props.id, [event.target.value]));
     }
 
     render() {
@@ -14,7 +13,8 @@ export default class Select extends React.Component {
             <label key={option.value} className="radio-inline">
                 <input type="radio"
                        value={option.value}
-                       name={this.props.id}/>
+                       name={this.props.id}
+                />
                 {option.label}
             </label>
         ));

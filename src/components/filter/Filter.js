@@ -16,7 +16,7 @@ export default class Filter extends React.Component {
             case 'multiselect':
                 return <MultiSelect key={filter.id} id={filter.id} label={filter.label} options={options}/>;
             case 'daterange':
-                return <DateRange key={filter.id} label={filter.label}/>;
+                return <DateRange key={filter.id} id={filter.id} label={filter.label} startDate={filter.startDate} endDate={filter.endDate}/>;
         }
     }
 

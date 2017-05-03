@@ -5,12 +5,12 @@ import store from "../../store";
 import {changeFilter} from "../../actions/filtersActions";
 
 export default class Select extends React.Component {
-    handleSelectChange(values) {
-        store.dispatch(changeFilter(this.name, [values]));
+    handleSelectChange(value) {
+        store.dispatch(changeFilter(this.name, [value.value]));
     }
 
     render() {
-        const selected = this.props.options.find((option) => option.selected) || this.props.options[0];
+        const selected = this.props.options.find((option) => option.selected);
 
         return (
             <label className="col-xs-12 col-sm-4 form-group">
@@ -21,6 +21,7 @@ export default class Select extends React.Component {
                              value={selected}
                              placeholder="Všechny hodnoty"
                              noResultsText="Žádná možnost nenalezena"
+                             clearable={false}
                 />
             </label>
         );

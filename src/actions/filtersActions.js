@@ -17,6 +17,17 @@ export function changeFilter(filter, values) {
     }
 }
 
+export function changeFilterDate(filter, startDate, endDate) {
+    return {
+        type: 'FILTER_DATE_CHANGED',
+        payload: {
+            filter: filter,
+            startDate: startDate,
+            endDate: endDate
+        }
+    }
+}
+
 export function toggleFilters(visible) {
     return {
         type: 'FILTERS_TOGGLE',
