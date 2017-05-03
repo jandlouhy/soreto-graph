@@ -13,7 +13,7 @@ export default class MultiSelect extends React.Component {
         const selected = this.props.options.filter((option) => option.selected);
 
         return (
-            <label className={this.props.labelClass}>
+            <label className="col-xs-12 col-sm-4 form-group">
                 {this.props.label}
                 <ReactSelect onChange={this.handleSelectChange}
                              name={this.props.id}
@@ -21,6 +21,7 @@ export default class MultiSelect extends React.Component {
                              options={this.props.options}
                              value={selected}
                              placeholder="Všechny hodnoty"
+                             noResultsText="Žádná možnost nenalezena"
                 />
             </label>
         );

@@ -5,8 +5,8 @@ import {fetchFilters} from "../../actions/filtersActions";
 
 import Filter from "./Filter";
 import Loading from "../Loading";
-import SubmitFilterButton from "./SubmitFilterButton";
-import HideFiltersButton from "./HideFiltersButton";
+import ToggleFiltersButton from "./ToggleFiltersButton";
+import SubmitFiltersButton from "./SubmitFilterButton";
 
 export default class FilterContainer extends React.Component {
     componentWillMount() {
@@ -22,10 +22,22 @@ export default class FilterContainer extends React.Component {
 
         const filters = this.props.filters.filters.map((filter) => <Filter key={filter.id} filters={filter}/>);
 
-        return <div>
-            {filters}
-            <HideFiltersButton/>
-            <SubmitFilterButton/>
+        const styles = {
+            padding: '15px',
+            backgroundColor: '#313539',
+            border: '1px solid rgba(0,0,0,0.6)',
+        };
+
+        return <div style={styles} className="navbar">
+            {this.props.filters.visible ? (
+                <div>
+                    {filters}
+                    <ToggleFiltersButton visible={this.props.filters.visible}/>
+                    <SubmitFiltersButton/>
+                </div>
+            ) : (
+                <ToggleFiltersButton visible={this.props.filters.visible}/>
+            )}
         </div>;
     }
 }

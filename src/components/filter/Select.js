@@ -10,16 +10,17 @@ export default class Select extends React.Component {
     }
 
     render() {
-        const selected = this.props.options.find((option) => option.selected);
+        const selected = this.props.options.find((option) => option.selected) || this.props.options[0];
 
         return (
-            <label className={this.props.labelClass}>
+            <label className="col-xs-12 col-sm-4 form-group">
                 {this.props.label}
                 <ReactSelect onChange={this.handleSelectChange}
                              name={this.props.id}
                              options={this.props.options}
                              value={selected}
                              placeholder="Všechny hodnoty"
+                             noResultsText="Žádná možnost nenalezena"
                 />
             </label>
         );

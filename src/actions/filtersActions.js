@@ -17,21 +17,11 @@ export function changeFilter(filter, values) {
     }
 }
 
-export function showFilters() {
+export function toggleFilters(visible) {
     return {
         type: 'FILTERS_TOGGLE',
         payload: {
-            visible: true
-        }
-    }
-
-}
-
-export function hideFilters() {
-    return {
-        type: 'FILTERS_TOGGLE',
-        payload: {
-            visible: false
+            visible: visible
         }
     }
 

@@ -10,31 +10,17 @@ export default class Filter extends React.Component {
         const options = filter.values ? filter.values.filter((option) => option.visible) : [];
         switch (filter.type) {
             case 'radio':
-                return <Radio key={filter.id}
-                               labelClass="col-xs-12 col-sm-4 form-group"
-                               id={filter.id}
-                               label={filter.label}
-                               options={options}/>;
+                return <Radio key={filter.id} id={filter.id} label={filter.label} options={options}/>;
             case 'select':
-                return <Select key={filter.id}
-                               labelClass="col-xs-12 col-sm-4 form-group"
-                               id={filter.id}
-                               label={filter.label}
-                               options={options}/>;
+                return <Select key={filter.id} id={filter.id} label={filter.label} options={options}/>;
             case 'multiselect':
-                return <MultiSelect key={filter.id}
-                               labelClass="col-xs-12 col-sm-4 form-group"
-                               id={filter.id}
-                               label={filter.label}
-                               options={options}/>;
+                return <MultiSelect key={filter.id} id={filter.id} label={filter.label} options={options}/>;
             case 'daterange':
-                return <div key={filter.id} className="col-xs-12 form-group">
-                    <DateRange label={filter.label}/>
-                </div>;
+                return <DateRange key={filter.id} label={filter.label}/>;
         }
     }
 
-    getFilters(filter = this.props.filters) {
+    getFilters(filter) {
         if (filter) {
             if (filter.children) {
                 return [this.createFilterComponent(filter), ...this.getFilters(filter.children)];
@@ -45,7 +31,7 @@ export default class Filter extends React.Component {
     }
 
     render() {
-        const filters = this.getFilters();
+        const filters = this.getFilters(this.props.filters);
 
         return <div className="row">
             {filters}

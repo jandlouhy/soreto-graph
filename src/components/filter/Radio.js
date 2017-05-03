@@ -1,23 +1,28 @@
 import React from "react";
-import ReactSelect from "react-select";
 
 import store from "../../store";
 import {changeFilter} from "../../actions/filtersActions";
 
 export default class Select extends React.Component {
-    handleSelectChange(values) {
-        store.dispatch(changeFilter(this.name, [values]));
+    handleSelectChange(value) {
+        console.log(value);
+        store.dispatch(changeFilter(this.props.id, [value]));
     }
 
     render() {
-        const options = this.props.options.map((option) => (<label key={option.value}>
-            <input type="radio" value={option.value} name={this.props.id} /> {option.label}
-        </label>));
+        const options = this.props.options.map((option) => (
+            <label key={option.value} className="radio-inline">
+                <input type="radio"
+                       value={option.value}
+                       name={this.props.id}/>
+                {option.label}
+            </label>
+        ));
 
         return (
-            <div className={this.props.labelClass}>
+            <div className="col-xs-12 col-sm-4 form-group">
                 {this.props.label}
-                <div>
+                <div onChange={this.handleSelectChange.bind(this)}>
                     {options}
                 </div>
             </div>
