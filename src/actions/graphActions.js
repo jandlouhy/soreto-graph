@@ -1,8 +1,13 @@
 import axios from "axios";
 
-export function fetchGraph() {
+import {buildFilterQueryObject} from "../utils/filterQuery";
+
+export function fetchGraph(filters) {
+    console.log(buildFilterQueryObject(filters));
     return {
         type: 'FETCH_GRAPH',
-        payload: axios.get('/Chart/GetFilteredData')
+        payload: axios.get('/Chart/GetFilteredData', {
+            params: buildFilterQueryObject(filters)
+        })
     };
 }

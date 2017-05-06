@@ -23,7 +23,7 @@ export default class Layout extends React.Component {
         }
 
         if (!graph.fetched && !graph.fetching) {
-            store.dispatch(fetchGraph())
+            store.dispatch(fetchGraph(filters.filters))
         }
     }
 

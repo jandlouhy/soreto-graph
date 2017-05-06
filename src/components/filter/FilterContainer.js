@@ -7,13 +7,13 @@ import SubmitFiltersButton from "./SubmitFilterButton";
 
 export default class FilterContainer extends React.Component {
     render() {
-        const {fetching, visible} = this.props.filters;
+        const {fetching, visible, filters} = this.props.filters;
 
         if (fetching) {
             return <Loading />;
         }
 
-        const filters = this.props.filters.filters.map((filter) => <Filter key={filter.id} filters={filter}/>);
+        const filterComponents = filters.map((filter) => <Filter key={filter.id} filters={filter}/>);
 
         const styles = {
             padding: '15px',
@@ -24,9 +24,9 @@ export default class FilterContainer extends React.Component {
         return <div style={styles} className="navbar">
             {visible ? (
                 <div>
-                    {filters}
+                    {filterComponents}
                     <ToggleFiltersButton visible={visible}/>
-                    <SubmitFiltersButton/>
+                    <SubmitFiltersButton filters={filters}/>
                 </div>
             ) : (
                 <ToggleFiltersButton visible={visible}/>

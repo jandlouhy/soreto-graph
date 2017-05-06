@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function createFilter(filter) {
     if (filter.values) {
         filter.values = filter.values.map((value) => ({
@@ -7,6 +9,12 @@ export function createFilter(filter) {
             visible: true,
             selected: false
         }));
+    } else {
+        filter = {
+            ...filter,
+            startDate: moment(filter.startDate),
+            endDate: moment(filter.endDate)
+        };
     }
 
     if (filter.children) {
