@@ -7,7 +7,11 @@ import SubmitFiltersButton from "./SubmitFilterButton";
 
 export default class FilterContainer extends React.Component {
     render() {
-        const {fetching, visible, filters} = this.props.filters;
+        const {fetching, visible, filters, error} = this.props.filters;
+
+        if (error) {
+            return <ErrorAlert message={error}/>;
+        }
 
         if (fetching) {
             return <Loading />;
@@ -20,13 +24,18 @@ export default class FilterContainer extends React.Component {
             backgroundColor: '#313539',
             border: '1px solid rgba(0,0,0,0.6)',
         };
-
+        
         return <div style={styles} className="navbar">
             {visible ? (
                 <div>
+                    <div className="form-group">
+                        <ToggleFiltersButton visible={visible}/>
+                    </div>
                     {filterComponents}
-                    <ToggleFiltersButton visible={visible}/>
-                    <SubmitFiltersButton filters={filters}/>
+                    <div className="form-group">
+                        <ToggleFiltersButton visible={visible}/>
+                        <SubmitFiltersButton filters={filters}/>
+                    </div>
                 </div>
             ) : (
                 <ToggleFiltersButton visible={visible}/>

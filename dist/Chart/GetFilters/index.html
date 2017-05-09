@@ -1,246 +1,127 @@
 [
     {
-        "id": "sf-timeperiod",
-        "label": "Časový úsek",
-        "type": "select",
-        "children": null,
         "values": [
             {
                 "id": "D",
                 "title": "Den",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "W",
                 "title": "Týden",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "M",
                 "title": "Měsíc",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "Y",
                 "title": "YTD",
+                "selected": false,
                 "children": null
             }
-        ]
+        ],
+        "id": "sf-timeperiod",
+        "label": "Časový úsek",
+        "type": "select",
+        "children": null
     },
     {
+        "startDate": "",
+        "endDate": null,
         "id": "sf-timerange",
         "label": "Časový rozsah",
         "type": "daterange",
-        "children": null,
-        "values": null,
-        "startDate": "1.1.2010",
-        "endDate": "1.1.2010"
+        "children": null
     },
     {
-        "id": "sf-currencytype",
-        "label": "Měna:",
-        "type": "radio",
-        "children": null,
         "values": [
             {
                 "id": "C",
                 "title": "CZK",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "E",
                 "title": "EUR",
+                "selected": false,
                 "children": null
             }
-        ]
+        ],
+        "id": "sf-currencytype",
+        "label": "Měna:",
+        "type": "select",
+        "children": null
     },
     {
-        "id": "sf-charttype",
-        "label": "Typ grafu:",
-        "type": "radio",
-        "children": null,
         "values": [
             {
                 "id": "P",
                 "title": "Pareto",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "T",
                 "title": "Trend",
+                "selected": false,
                 "children": null
             }
-        ]
+        ],
+        "id": "sf-charttype",
+        "label": "Typ grafu:",
+        "type": "select",
+        "children": null
     },
     {
-        "id": "df-ff",
-        "label": "FF",
-        "type": "multiselect",
-        "children": {
-            "id": "df-bu",
-            "label": "BU",
-            "type": "multiselect",
-            "children": {
-                "id": "df-segment",
-                "label": "Segment",
-                "type": "multiselect",
-                "children": null,
-                "values": [
-                    {
-                        "id": "ECU",
-                        "title": "ECU",
-                        "children": null
-                    },
-                    {
-                        "id": "Fluid",
-                        "title": "Fluid",
-                        "children": null
-                    },
-                    {
-                        "id": "Gear",
-                        "title": "Gear",
-                        "children": null
-                    },
-                    {
-                        "id": "KL",
-                        "title": "KL",
-                        "children": null
-                    },
-                    {
-                        "id": "none",
-                        "title": "none",
-                        "children": null
-                    },
-                    {
-                        "id": "t",
-                        "title": "t",
-                        "children": null
-                    },
-                    {
-                        "id": "Temp",
-                        "title": "Temp",
-                        "children": null
-                    },
-                    {
-                        "id": "TES",
-                        "title": "TES",
-                        "children": null
-                    },
-                    {
-                        "id": "UCLS",
-                        "title": "UCLS",
-                        "children": null
-                    }
-                ]
-            },
-            "values": [
-                {
-                    "id": "EGV",
-                    "title": "EGV",
-                    "children": [
-                        "Gear"
-                    ]
-                },
-                {
-                    "id": "EHV",
-                    "title": "EHV",
-                    "children": [
-                        "Fluid"
-                    ]
-                },
-                {
-                    "id": "ES",
-                    "title": "ES",
-                    "children": [
-                        "none"
-                    ]
-                },
-                {
-                    "id": "EVP",
-                    "title": "EVP",
-                    "children": [
-                        "ECU"
-                    ]
-                },
-                {
-                    "id": "FEM",
-                    "title": "FEM",
-                    "children": [
-                        "none"
-                    ]
-                },
-                {
-                    "id": "PSP",
-                    "title": "PSP",
-                    "children": [
-                        "Fluid"
-                    ]
-                },
-                {
-                    "id": "S&A",
-                    "title": "S&A",
-                    "children": [
-                        "UCLS",
-                        "TES"
-                    ]
-                },
-                {
-                    "id": "SA",
-                    "title": "SA",
-                    "children": [
-                        "Temp",
-                        "Fluid"
-                    ]
-                },
-                {
-                    "id": "ST",
-                    "title": "ST",
-                    "children": [
-                        "KL"
-                    ]
-                },
-                {
-                    "id": "TEST",
-                    "title": "TEST",
-                    "children": [
-                        "t"
-                    ]
-                },
-                {
-                    "id": "TR",
-                    "title": "TR",
-                    "children": [
-                        "none"
-                    ]
-                }
-            ]
-        },
         "values": [
             {
                 "id": "FF1",
                 "title": "FF1",
+                "selected": true,
                 "children": [
                     "EGV",
-                    "TEST",
-                    "SA"
+                    "TEST"
+                ]
+            },
+            {
+                "id": "FF1            ",
+                "title": "FF1            ",
+                "selected": false,
+                "children": [
+                    "SA             "
                 ]
             },
             {
                 "id": "FF2",
                 "title": "FF2",
+                "selected": false,
                 "children": [
                     "PSP",
                     "EVP",
                     "ES",
                     "TR",
-                    "FEM",
-                    "SA"
+                    "FEM"
                 ]
             },
-
+            {
+                "id": "FF2            ",
+                "title": "FF2            ",
+                "selected": false,
+                "children": [
+                    "SA             "
+                ]
+            },
             {
                 "id": "FF3",
                 "title": "FF3",
+                "selected": false,
                 "children": [
                     "S&A",
                     "S&A",
@@ -250,162 +131,279 @@
             {
                 "id": "FF4",
                 "title": "FF4",
+                "selected": false,
                 "children": [
                     "ST"
                 ]
             }
-        ]
+        ],
+        "id": "df-ff",
+        "label": "FF",
+        "type": "multiselect",
+        "children": {
+            "values": [
+                {
+                    "id": "EGV",
+                    "title": "EGV",
+                    "selected": false,
+                    "children": [
+                        "Gear"
+                    ]
+                },
+                {
+                    "id": "EHV",
+                    "title": "EHV",
+                    "selected": false,
+                    "children": [
+                        "Fluid"
+                    ]
+                },
+                {
+                    "id": "ES",
+                    "title": "ES",
+                    "selected": false,
+                    "children": [
+                        "none"
+                    ]
+                },
+                {
+                    "id": "EVP",
+                    "title": "EVP",
+                    "selected": false,
+                    "children": [
+                        "ECU"
+                    ]
+                },
+                {
+                    "id": "FEM",
+                    "title": "FEM",
+                    "selected": false,
+                    "children": [
+                        "none"
+                    ]
+                },
+                {
+                    "id": "PSP",
+                    "title": "PSP",
+                    "selected": false,
+                    "children": [
+                        "Fluid"
+                    ]
+                },
+                {
+                    "id": "S&A",
+                    "title": "S&A",
+                    "selected": false,
+                    "children": [
+                        "UCLS",
+                        "TES"
+                    ]
+                },
+                {
+                    "id": "SA             ",
+                    "title": "SA             ",
+                    "selected": false,
+                    "children": [
+                        "Temp",
+                        "Fluid"
+                    ]
+                },
+                {
+                    "id": "ST",
+                    "title": "ST",
+                    "selected": false,
+                    "children": [
+                        "KL"
+                    ]
+                },
+                {
+                    "id": "TEST",
+                    "title": "TEST",
+                    "selected": false,
+                    "children": [
+                        "t"
+                    ]
+                },
+                {
+                    "id": "TR",
+                    "title": "TR",
+                    "selected": false,
+                    "children": [
+                        "none"
+                    ]
+                }
+            ],
+            "id": "df-bu",
+            "label": "BU",
+            "type": "multiselect",
+            "children": {
+                "values": [
+                    {
+                        "id": "ECU",
+                        "title": "ECU",
+                        "selected": false,
+                        "children": null
+                    },
+                    {
+                        "id": "Fluid",
+                        "title": "Fluid",
+                        "selected": false,
+                        "children": null
+                    },
+                    {
+                        "id": "Gear",
+                        "title": "Gear",
+                        "selected": false,
+                        "children": null
+                    },
+                    {
+                        "id": "KL",
+                        "title": "KL",
+                        "selected": false,
+                        "children": null
+                    },
+                    {
+                        "id": "none",
+                        "title": "none",
+                        "selected": false,
+                        "children": null
+                    },
+                    {
+                        "id": "t",
+                        "title": "t",
+                        "selected": false,
+                        "children": null
+                    },
+                    {
+                        "id": "Temp",
+                        "title": "Temp",
+                        "selected": false,
+                        "children": null
+                    },
+                    {
+                        "id": "TES",
+                        "title": "TES",
+                        "selected": false,
+                        "children": null
+                    },
+                    {
+                        "id": "UCLS",
+                        "title": "UCLS",
+                        "selected": false,
+                        "children": null
+                    }
+                ],
+                "id": "df-segment",
+                "label": "Segment",
+                "type": "multiselect",
+                "children": null
+            }
+        }
     },
     {
+        "values": [],
         "id": "df-project",
         "label": "Projekt",
         "type": "multiselect",
-        "children": null,
-        "values": []
+        "children": null
     },
     {
+        "values": [],
         "id": "df-material",
         "label": "Materiál",
         "type": "multiselect",
-        "children": null,
-        "values": []
+        "children": null
     },
     {
-        "id": "sf-febe",
-        "label": "Front end / Back end:",
-        "type": "select",
-        "children": null,
         "values": [
             {
                 "id": "F",
                 "title": "FE",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "B",
                 "title": "BE",
+                "selected": false,
                 "children": null
             }
-        ]
+        ],
+        "id": "sf-febe",
+        "label": "Front end / Back end:",
+        "type": "select",
+        "children": null
     },
     {
+        "values": [],
         "id": "df-line",
         "label": "Linka",
         "type": "multiselect",
-        "children": null,
-        "values": []
+        "children": null
     },
     {
-        "id": "df-process",
-        "label": "Proces",
-        "type": "multiselect",
-        "children": null,
         "values": [
             {
                 "id": "1",
                 "title": "0829 | S - NECO1",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "2",
                 "title": "0233 | S - SROTACE",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "3",
                 "title": "1801 | SD-AOI",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "4",
                 "title": "0101 | S-AUTO.OSAZ.",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "5",
                 "title": "0102 | S-AUTO STRIHANI PINU",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "6",
                 "title": "0103 | S-AUTO STRIHANI PINU",
+                "selected": false,
                 "children": null
             },
             {
                 "id": "7",
                 "title": "0990 | OST PO SOP-BLACK OUT",
+                "selected": false,
                 "children": null
             }
-        ]
+        ],
+        "id": "df-process",
+        "label": "Proces",
+        "type": "multiselect",
+        "children": null
     },
     {
+        "values": [],
         "id": "df-processlaststep",
         "label": "Poslední krok v procesu",
         "type": "multiselect",
-        "children": null,
-        "values": []
+        "children": null
     },
     {
-        "id": "df-scrapcategory1",
-        "label": "Druh nákladů",
-        "type": "multiselect",
-        "children": {
-            "id": "df-scrapcategory2",
-            "label": "Příčina",
-            "type": "multiselect",
-            "children": null,
-            "values": [
-                {
-                    "id": "1",
-                    "title": "1",
-                    "children": null
-                },
-                {
-                    "id": "2",
-                    "title": "2",
-                    "children": null
-                },
-                {
-                    "id": "3",
-                    "title": "3",
-                    "children": null
-                },
-                {
-                    "id": "4",
-                    "title": "4",
-                    "children": null
-                },
-                {
-                    "id": "5",
-                    "title": "5",
-                    "children": null
-                },
-                {
-                    "id": "6",
-                    "title": "6",
-                    "children": null
-                },
-                {
-                    "id": "7",
-                    "title": "7",
-                    "children": null
-                },
-                {
-                    "id": "8",
-                    "title": "8",
-                    "children": null
-                },
-                {
-                    "id": "9",
-                    "title": "9",
-                    "children": null
-                }
-            ]
-        },
         "values": [
             {
                 "id": "1",
                 "title": "Start up",
+                "selected": false,
                 "children": [
                     "2",
                     "4",
@@ -416,6 +414,7 @@
             {
                 "id": "2",
                 "title": "Šrotace ve výrobě",
+                "selected": false,
                 "children": [
                     "7",
                     "8"
@@ -424,6 +423,7 @@
             {
                 "id": "3",
                 "title": "Material usage - ostatní",
+                "selected": false,
                 "children": [
                     "1",
                     "3"
@@ -432,18 +432,86 @@
             {
                 "id": "4",
                 "title": "Obsolete",
+                "selected": false,
                 "children": []
             },
             {
                 "id": "5",
                 "title": "Vývojové zakázky R&D náklady",
+                "selected": false,
                 "children": []
             },
             {
                 "id": "6",
                 "title": "NCC1.1",
+                "selected": false,
                 "children": []
             }
-        ]
+        ],
+        "id": "df-scrapcategory1",
+        "label": "Druh nákladů",
+        "type": "multiselect",
+        "children": {
+            "values": [
+                {
+                    "id": "1",
+                    "title": "1",
+                    "selected": false,
+                    "children": null
+                },
+                {
+                    "id": "2",
+                    "title": "2",
+                    "selected": false,
+                    "children": null
+                },
+                {
+                    "id": "3",
+                    "title": "3",
+                    "selected": false,
+                    "children": null
+                },
+                {
+                    "id": "4",
+                    "title": "4",
+                    "selected": false,
+                    "children": null
+                },
+                {
+                    "id": "5",
+                    "title": "5",
+                    "selected": false,
+                    "children": null
+                },
+                {
+                    "id": "6",
+                    "title": "6",
+                    "selected": false,
+                    "children": null
+                },
+                {
+                    "id": "7",
+                    "title": "7",
+                    "selected": false,
+                    "children": null
+                },
+                {
+                    "id": "8",
+                    "title": "8",
+                    "selected": false,
+                    "children": null
+                },
+                {
+                    "id": "9",
+                    "title": "9",
+                    "selected": false,
+                    "children": null
+                }
+            ],
+            "id": "df-scrapcategory2",
+            "label": "Příčina",
+            "type": "multiselect",
+            "children": null
+        }
     }
 ]

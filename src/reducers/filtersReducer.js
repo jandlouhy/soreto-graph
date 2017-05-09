@@ -18,7 +18,7 @@ export default function filtersReducer(state = {
             return {
                 ...state,
                 fetching: false,
-                error: action.payload
+                error: action.payload.response ? 'Filtry se nepodařilo načíst.' : action.payload
             };
         }
         case 'FETCH_FILTERS_FULFILLED': {
@@ -45,6 +45,7 @@ export default function filtersReducer(state = {
                             startDate: action.payload.startDate,
                             endDate: action.payload.endDate,
                         };
+                        filter.endDate = action.payload.endDate;
                     }
                     return filter;
                 })

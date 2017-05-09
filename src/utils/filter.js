@@ -1,20 +1,23 @@
 import moment from "moment";
 
 export function createFilter(filter) {
-    if (filter.values) {
+    if (filter.type === 'daterange') {
+        const {startDate, endDate} = filter;
+        filter = {
+            ...filter,
+            startDate: startDate ? moment(startDate, "DD.MM.YYYY") : null,
+            endDate: endDate ? moment(endDate, "DD.MM.YYYY") : null,
+        };
+    } else if (filter.values) {
         filter.values = filter.values.map((value) => ({
             label: value.title,
             value: value.id,
             children: value.children,
-            visible: true,
-            selected: false
+            visible: value.visible ? value.visible : true,
+            selected: value.selected ? value.selected : false
         }));
     } else {
-        filter = {
-            ...filter,
-            startDate: moment(filter.startDate),
-            endDate: moment(filter.endDate)
-        };
+        console.error(`Filter ${filter.id} doesn't have 'values' attribute.`);
     }
 
     if (filter.children) {
@@ -30,9 +33,10 @@ export function reduceFilter(payload, filter, values) {
     if (filter.id === payload.filter) {
         values = filter.values.map((value) => {
             return {
-            ...value,
-            selected: typeof (payload.values.find((option) => option === value.value)) !== 'undefined'
-        }});
+                ...value,
+                selected: typeof (payload.values.find((option) => option === value.value)) !== 'undefined'
+            }
+        });
     }
 
     if (children && children.values) {
