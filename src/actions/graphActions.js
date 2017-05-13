@@ -10,3 +10,10 @@ export function fetchGraph(filters) {
         })
     };
 }
+
+    export function graphLoaded(chart) {
+    return {
+        type: 'GRAPH_LOADED',
+        payload: chart
+    }
+}

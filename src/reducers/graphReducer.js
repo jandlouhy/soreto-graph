@@ -3,6 +3,7 @@ export default function graphReducer(state = {
     fetched: false,
     options: {},
     data: {},
+    chart: {},
     error: null
 }, action) {
     switch (action.type) {
@@ -26,6 +27,12 @@ export default function graphReducer(state = {
                 fetched: true,
                 data: action.payload.data.data,
                 options: action.payload.data.options,
+            };
+        }
+        case 'GRAPH_LOADED': {
+            return {
+                ...state,
+                chart: action.payload
             };
         }
     }
