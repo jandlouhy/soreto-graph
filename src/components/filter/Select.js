@@ -1,5 +1,5 @@
 import React from "react";
-import ReactSelect from "react-select";
+import VirtualizedSelect from "react-virtualized-select";
 
 import store from "../../store";
 import {changeFilter} from "../../actions/filtersActions";
@@ -16,13 +16,13 @@ export default class Select extends React.Component {
         return (
             <label className="col-xs-12 col-sm-4 form-group">
                 {label}
-                <ReactSelect onChange={this.handleSelectChange}
-                             name={id}
-                             options={options}
-                             value={selected}
-                             placeholder="Všechny hodnoty"
-                             noResultsText="Žádná možnost nenalezena"
-                             clearable={false}
+                <VirtualizedSelect onChange={this.handleSelectChange}
+                                   name={id}
+                                   options={options}
+                                   value={selected}
+                                   placeholder="Všechny hodnoty"
+                                   noResultsText="Žádná možnost nenalezena"
+                                   clearable={false}
                 />
             </label>
         );

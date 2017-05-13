@@ -38,6 +38,7 @@
     "react-loaders": "^2.5.0",
     "react-redux": "^5.0.4",
     "react-select": "^1.0.0-rc.3",
+    "react-virtualized-select": "^3.0.1",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.0",
     "redux-promise-middleware": "^4.2.0"
