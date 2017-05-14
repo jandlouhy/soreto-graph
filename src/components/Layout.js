@@ -8,7 +8,6 @@ import {fetchGraph} from "../actions/graphActions";
 import Chart from "./Chart";
 import FilterContainer from "./filter/FilterContainer";
 import ExportButtons from "./ExportButtons";
-import Loading from "./Loading";
 
 @connect((store) => {
     return {
@@ -17,6 +16,11 @@ import Loading from "./Loading";
     }
 })
 export default class Layout extends React.Component {
+    constructor(props) {
+        super(props);
+        this.chart = null;
+    }
+
     componentWillMount() {
         const {filters, graph} = this.props;
 
@@ -32,20 +36,22 @@ export default class Layout extends React.Component {
     render() {
         const {filters, graph} = this.props;
 
-        if (filters.fetching) {
-            return <Loading />;
-        }
-
         return <div>
             <FilterContainer filters={filters}/>
             <div className="row">
                 <div className="col-sm-10 form-group">
-                    <Chart graph={graph}/>
+                    <Chart ref={this.setChartInstance.bind(this)} graph={graph}/>
                 </div>
                 <div className="col-sm-2">
-                    <ExportButtons filters={filters.filters} chart={graph.chart}/>
+                    <ExportButtons filters={filters.filters} chart={this.chart}/>
                 </div>
             </div>
         </div>;
+    }
+
+    setChartInstance(graph) {
+        if (graph && graph.refs.chart) {
+            this.chart = graph.refs.chart.chart_instance;
+        }
     }
 }

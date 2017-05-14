@@ -3,6 +3,7 @@ import React from "react";
 import Filter from "./Filter";
 import ToggleFiltersButton from "./ToggleFiltersButton";
 import SubmitFiltersButton from "./SubmitFilterButton";
+import Loading from "../Loading";
 
 export default class FilterContainer extends React.Component {
     render() {
@@ -10,6 +11,10 @@ export default class FilterContainer extends React.Component {
 
         if (error) {
             return <ErrorAlert message={error}/>;
+        }
+
+        if (filters.fetching) {
+            return <Loading />;
         }
 
         const filterComponents = filters.map((filter) => <Filter key={filter.id} filters={filter}/>);

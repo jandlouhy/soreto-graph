@@ -29,12 +29,6 @@ export default function graphReducer(state = {
                 options: action.payload.data.options,
             };
         }
-        case 'GRAPH_LOADED': {
-            return {
-                ...state,
-                chart: action.payload
-            };
-        }
     }
     return state;
 }

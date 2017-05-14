@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import moment from "moment";
+import { defaults } from 'react-chartjs-2';
+
 
 import Layout from "./components/Layout";
 import store from "./store";
@@ -12,10 +14,11 @@ import 'react-virtualized/styles.css'
 import 'react-virtualized-select/styles.css'
 import "loaders.css/loaders.min.css";
 
-const app = document.getElementById('app');
-
 moment.locale('cs');
 
+defaults.global.animation = false;
+
+const app = document.getElementById('app');
 ReactDOM.render(
     <Provider store={store}>
         <Layout/>
