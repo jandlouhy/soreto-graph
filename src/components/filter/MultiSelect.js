@@ -3,8 +3,14 @@ import VirtualizedSelect from "react-virtualized-select";
 
 import store from "../../store";
 import {changeFilter} from "../../actions/filtersActions";
+import createFilterOptions from 'react-select-fast-filter-options';
 
 export default class MultiSelect extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {input: ''};
+    }
+
     handleSelectChange(values) {
         store.dispatch(changeFilter(this.name, values.map((value) => value.value)));
     }
@@ -12,6 +18,7 @@ export default class MultiSelect extends React.Component {
     render() {
         const {id, label, options} = this.props;
         const selected = options.filter((option) => option.selected);
+        const filterOptions = createFilterOptions({ options });
 
         return (
             <label className="col-xs-12 col-sm-4 form-group">
@@ -20,6 +27,7 @@ export default class MultiSelect extends React.Component {
                                    name={id}
                                    multi
                                    options={options}
+                                   filterOptions={filterOptions}
                                    value={selected}
                                    placeholder="Všechny hodnoty"
                                    noResultsText="Žádná možnost nenalezena"

@@ -1,19 +1,24 @@
 import React from "react";
 
+import CreateViewButton from "../view/CreateViewButton";
+import DeleteViewButton from "../view/DeleteViewButton";
 import Filter from "./Filter";
-import ToggleFiltersButton from "./ToggleFiltersButton";
-import SubmitFiltersButton from "./SubmitFilterButton";
 import Loading from "../Loading";
+import ToggleFiltersButton from "./ToggleFiltersButton";
+import SaveViewButton from "../view/SaveViewButton";
+import SubmitFiltersButton from "./SubmitFilterButton";
+import ViewSelector from "../view/ViewSelector";
 
 export default class FilterContainer extends React.Component {
     render() {
-        const {visible, filters, error} = this.props.filters;
+        const {fetching, visible, filters, error} = this.props.filters;
+        const {filterQuery, view} = this.props;
 
         if (error) {
             return <ErrorAlert message={error}/>;
         }
 
-        if (filters.fetching) {
+        if (fetching || view.fetching) {
             return <Loading />;
         }
 
@@ -28,17 +33,26 @@ export default class FilterContainer extends React.Component {
         return <div style={styles} className="navbar">
             {visible ? (
                 <div>
-                    <div className="form-group">
+                    <div className="row">
+                        <ViewSelector view={view}/>
                         <ToggleFiltersButton visible={visible}/>
                     </div>
                     {filterComponents}
+                    <div className="form-group">
+                        <DeleteViewButton/>
+                        <SaveViewButton/>
+                        <CreateViewButton filterQuery={filterQuery}/>
+                    </div>
                     <div className="form-group">
                         <ToggleFiltersButton visible={visible}/>
                         <SubmitFiltersButton filters={filters}/>
                     </div>
                 </div>
             ) : (
-                <ToggleFiltersButton visible={visible}/>
+                <div className="row">
+                    <ViewSelector view={view}/>
+                    <ToggleFiltersButton visible={visible}/>
+                </div>
             )}
         </div>;
     }

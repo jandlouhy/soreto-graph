@@ -17,6 +17,6 @@ export default class ToggleFiltersButton extends React.Component {
     render() {
         return <button onClick={this.toggleFilters} className="btn btn-warning">
             {this.props.visible ? 'Skrýt filtry' : 'Zobrazit filtry'}
-        </button>
+        </button>;
     }
 }

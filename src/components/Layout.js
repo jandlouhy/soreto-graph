@@ -4,23 +4,21 @@ import {connect} from "react-redux";
 import store from "../store";
 import {fetchFilters} from "../actions/filtersActions";
 import {fetchGraph} from "../actions/graphActions";
+import {buildFilterQueryObject} from "../utils/filterQuery";
 
-import Chart from "./Chart";
 import FilterContainer from "./filter/FilterContainer";
-import ExportButtons from "./ExportButtons";
+import Loading from "./Loading";
+import Chart from "./Chart";
 
 @connect((store) => {
     return {
         filters: store.filters,
         graph: store.graph,
+        filterQuery: buildFilterQueryObject(store.filters.filters),
+        view: store.view
     }
 })
 export default class Layout extends React.Component {
-    constructor(props) {
-        super(props);
-        this.chart = null;
-    }
-
     componentWillMount() {
         const {filters, graph} = this.props;
 
@@ -34,24 +32,15 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const {filters, graph} = this.props;
+        const {filters, graph, filterQuery, view} = this.props;
+
+        if (filters.fetching && graph.fetching) {
+            return <Loading/>;
+        }
 
         return <div>
-            <FilterContainer filters={filters}/>
-            <div className="row">
-                <div className="col-sm-10 form-group">
-                    <Chart ref={this.setChartInstance.bind(this)} graph={graph}/>
-                </div>
-                <div className="col-sm-2">
-                    <ExportButtons filters={filters.filters} chart={this.chart}/>
-                </div>
-            </div>
+            <FilterContainer filters={filters} filterQuery={filterQuery} view={view}/>
+            <Chart graph={graph} filters={filters} filterQuery={filterQuery}/>
         </div>;
-    }
-
-    setChartInstance(graph) {
-        if (graph && graph.refs.chart) {
-            this.chart = graph.refs.chart.chart_instance;
-        }
     }
 }

@@ -45,7 +45,6 @@ export default function filtersReducer(state = {
                             startDate: action.payload.startDate,
                             endDate: action.payload.endDate,
                         };
-                        filter.endDate = action.payload.endDate;
                     }
                     return filter;
                 })
