@@ -18,7 +18,7 @@ export default function filtersReducer(state = {
             return {
                 ...state,
                 fetching: false,
-                error: action.payload.response ? 'Filtry se nepodařilo načíst.' : action.payload
+                error: action.payload.response ? `Filtry se nepodařilo načíst: ${action.payload.message}` : action.payload
             };
         }
         case 'FETCH_FILTERS_FULFILLED': {

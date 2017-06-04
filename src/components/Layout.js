@@ -1,11 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
 
-import store from "../store";
-import {fetchFilters} from "../actions/filtersActions";
-import {fetchGraph} from "../actions/graphActions";
 import {buildFilterQueryObject} from "../utils/filterQuery";
 
+import ErrorAlert from "./ErrorAlert";
 import FilterContainer from "./filter/FilterContainer";
 import Loading from "./Loading";
 import Chart from "./Chart";
@@ -19,26 +17,19 @@ import Chart from "./Chart";
     }
 })
 export default class Layout extends React.Component {
-    componentWillMount() {
-        const {filters, graph} = this.props;
-
-        if (!filters.fetched && !filters.fetching) {
-            store.dispatch(fetchFilters())
-        }
-
-        if (!graph.fetched && !graph.fetching) {
-            store.dispatch(fetchGraph(filters.filters))
-        }
-    }
-
     render() {
         const {filters, graph, filterQuery, view} = this.props;
 
-        if (filters.fetching && graph.fetching) {
+        if ((filters.fetching || view.fetching) && graph.fetching) {
             return <Loading/>;
         }
 
+        const errors = [filters, graph, view]
+            .filter((prop) => prop.error)
+            .map((prop) => ( <ErrorAlert key={prop.error.toString()} message={prop.error}/> ));
+
         return <div>
+            {errors}
             <FilterContainer filters={filters} filterQuery={filterQuery} view={view}/>
             <Chart graph={graph} filters={filters} filterQuery={filterQuery}/>
         </div>;

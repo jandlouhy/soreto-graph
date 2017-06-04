@@ -1,9 +1,10 @@
 import React from "react";
 import {Bar} from "react-chartjs-2";
 
-import ErrorAlert from "./ErrorAlert";
 import Loading from "./Loading";
 
+import store from "../store";
+import {fetchGraph} from "../actions/graphActions";
 import {stringify} from "query-string";
 
 export default class Chart extends React.Component {
@@ -12,44 +13,48 @@ export default class Chart extends React.Component {
         this.chart = null;
     }
 
+    componentWillMount() {
+        const {graph, filters} = this.props;
+
+        if (!graph.fetched && !graph.error) {
+            store.dispatch(fetchGraph(filters.filters))
+        }
+    }
+
     graphToImage(event) {
         event.target.href = this.chart.chart_instance.toBase64Image();
     }
 
     render() {
-        const {fetched, fetching, data, options, error} = this.props.graph;
-
-        if (error) {
-            return <ErrorAlert message={error}/>;
-        }
+        const {fetching, data, options, error} = this.props.graph;
 
         if (fetching) {
             return <Loading />;
         }
 
-        const filterQueryString = stringify(this.props.filterQuery);
-
-        if (fetched) {
-            return <div className="row">
-                <div className="col-sm-10 form-group">
-                    <Bar data={data} options={options} ref={(chart) => { this.chart = chart }} />
-                </div>
-                <div className="col-sm-2">
-                    <div className="form-group">
-                        <a className="btn btn-warning btn-block" href={'/Chart/Export2PDF/?' + filterQueryString}>
-                            Export PDF
-                        </a>
-                        <a className="btn btn-warning btn-block" href={'/Chart/Export2Excel/?' + filterQueryString}>
-                            Export Excel
-                        </a>
-                        <a className="btn btn-warning btn-block" target="_blank" onClick={this.graphToImage.bind(this)}>
-                            Export JPG
-                        </a>
-                    </div>
-                </div>
-            </div>;
+        if (error) {
+            return null;
         }
 
-        return null;
+        const filterQueryString = stringify(this.props.filterQuery);
+
+        return <div className="row">
+            <div className="col-sm-10 form-group">
+                <Bar data={data} options={options} ref={(chart) => { this.chart = chart }} />
+            </div>
+            <div className="col-sm-2">
+                <div className="form-group">
+                    <a className="btn btn-warning btn-block" href={'/Chart/Export2PDF/?' + filterQueryString}>
+                        Export PDF
+                    </a>
+                    <a className="btn btn-warning btn-block" href={'/Chart/Export2Excel/?' + filterQueryString}>
+                        Export Excel
+                    </a>
+                    <a className="btn btn-warning btn-block" target="_blank" onClick={this.graphToImage.bind(this)}>
+                        Export JPG
+                    </a>
+                </div>
+            </div>
+        </div>;
     }
 };

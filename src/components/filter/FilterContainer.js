@@ -9,17 +9,28 @@ import SaveViewButton from "../view/SaveViewButton";
 import SubmitFiltersButton from "./SubmitFilterButton";
 import ViewSelector from "../view/ViewSelector";
 
+import store from "../../store";
+import {fetchFilters} from "../../actions/filtersActions";
+
 export default class FilterContainer extends React.Component {
+    componentWillMount() {
+        const {filters} = this.props;
+
+        if (!filters.fetched && !filters.error) {
+            store.dispatch(fetchFilters())
+        }
+    }
+
     render() {
         const {fetching, visible, filters, error} = this.props.filters;
         const {filterQuery, view} = this.props;
 
-        if (error) {
-            return <ErrorAlert message={error}/>;
-        }
-
         if (fetching || view.fetching) {
             return <Loading />;
+        }
+
+        if (error) {
+            return null;
         }
 
         const filterComponents = filters.map((filter) => <Filter key={filter.id} filters={filter}/>);
@@ -34,7 +45,7 @@ export default class FilterContainer extends React.Component {
             {visible ? (
                 <div>
                     <div className="row">
-                        <ViewSelector view={view}/>
+                        <ViewSelector view={view} filters={filters}/>
                         <ToggleFiltersButton visible={visible}/>
                     </div>
                     {filterComponents}
@@ -50,7 +61,7 @@ export default class FilterContainer extends React.Component {
                 </div>
             ) : (
                 <div className="row">
-                    <ViewSelector view={view}/>
+                    <ViewSelector view={view} filters={filters}/>
                     <ToggleFiltersButton visible={visible}/>
                 </div>
             )}

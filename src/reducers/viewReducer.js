@@ -13,10 +13,11 @@ export default function viewReducer(state = {
             };
         }
         case 'FETCH_VIEWS_REJECTED': {
+            console.log('action.payload', action.payload);
             return {
                 ...state,
                 fetching: false,
-                error: action.payload.response ? 'Graf se nepodařilo načíst.' : action.payload
+                error: action.payload.response ? `Pohledy se nepodařilo načíst: ${action.payload.message}` : action.payload
             };
         }
         case 'FETCH_VIEWS_FULFILLED': {

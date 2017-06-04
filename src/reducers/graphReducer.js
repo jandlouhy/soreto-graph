@@ -17,7 +17,7 @@ export default function graphReducer(state = {
             return {
                 ...state,
                 fetching: false,
-                error: action.payload.response ? 'Graf se nepodařilo načíst.' : action.payload
+                error: action.payload.response ? `Graf se nepodařilo načíst: ${action.payload.message}` : action.payload
             };
         }
         case 'FETCH_GRAPH_FULFILLED': {

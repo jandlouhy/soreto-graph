@@ -1,37 +1,58 @@
 import React from "react";
 import VirtualizedSelect from "react-virtualized-select";
 
-import {fetchViews, changeView} from "../../actions/viewActions";
+import {changeView, fetchViews} from "../../actions/viewActions";
+import {fetchFilters, fetchFiltersByView} from "../../actions/filtersActions";
+import {fetchGraph} from "../../actions/graphActions";
 import store from "../../store";
 
 export default class ViewSelector extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            selected: null
+        };
+    }
+
     componentWillMount() {
-        if (!this.props.view.fetched) {
+        const {fetched, error} = this.props.view;
+
+        if (!fetched && !error) {
             store.dispatch(fetchViews())
         }
     }
 
-    handleSelectChange(value) {
-        store.dispatch(changeView(value))
+    changeView(view) {
+        store.dispatch(changeView(view));
+        if (view) {
+            store.dispatch(fetchFiltersByView(view.value));
+        } else {
+            store.dispatch(fetchFilters());
+        }
+    }
+
+    loadSelectedView() {
+        store.dispatch(fetchGraph(this.props.filters));
     }
 
     render() {
-        const options = this.props.view.items.map((item) => ({label: item.name, value: item.id}));
-        const selected = this.props.view.selected;
+        const {items, selected} = this.props.view;
+        const options = items.map((item) => ({label: item.name, value: item.id}));
 
         return <span>
             <label className="col-xs-12 col-sm-4">
-                <VirtualizedSelect onChange={this.handleSelectChange}
+                <VirtualizedSelect onChange={this.changeView}
                                    name="view-selector"
                                    options={options}
                                    value={selected}
                                    placeholder="Zvolte pohled"
                                    noResultsText="Žádný pohled zatím nebyl vytvořen"
-                                   clearable={false}
+                                   clearable={true}
                 />
             </label>
-            <button onClick="" className="btn btn-success">
-                Použít pohled
+            <button onClick={this.loadSelectedView.bind(this)} className="btn btn-success">
+                Načíst graf
             </button>
         </span>;
     }

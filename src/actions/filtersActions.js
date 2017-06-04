@@ -7,6 +7,13 @@ export function fetchFilters() {
     };
 }
 
+export function fetchFiltersByView(view) {
+    return {
+        type: 'FETCH_FILTERS',
+        payload: axios.get('/Chart/GetFilters/' + view)
+    };
+}
+
 export function changeFilter(filter, values) {
     return {
         type: 'FILTER_CHANGED',
