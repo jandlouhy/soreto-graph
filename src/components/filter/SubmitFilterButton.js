@@ -10,7 +10,7 @@ export default class SubmitFilterButton extends React.Component {
 
     render() {
         return <button className="btn btn-success" onClick={this.loadGraph.bind(this)}>
-            Vyfiltrovat
+            Načíst graf
         </button>;
     }
 }

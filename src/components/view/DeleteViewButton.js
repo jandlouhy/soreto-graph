@@ -1,12 +1,14 @@
 import React from "react";
 
 import store from "../../store";
-import {fetchGraph} from "../../actions/graphActions";
+import {deleteView} from "../../actions/viewActions";
 
 export default class DeleteViewButton extends React.Component {
     deleteView() {
-        if (confirm('Opravdu chcete odstranit zvolený pohled?')) {
-            store.dispatch
+        const {label, value} = this.props.view;
+
+        if (confirm(`Opravdu chcete odstranit pohled ${label}?`)) {
+            store.dispatch(deleteView(value));
         }
     }
 

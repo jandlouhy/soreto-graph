@@ -46,22 +46,25 @@ export default class FilterContainer extends React.Component {
                 <div>
                     <div className="row">
                         <ViewSelector view={view} filters={filters}/>
+                        <SubmitFiltersButton filters={filters}/>
+                        {view.selected ? <DeleteViewButton view={view.selected}/> : null}
                         <ToggleFiltersButton visible={visible}/>
                     </div>
                     {filterComponents}
                     <div className="form-group">
-                        <DeleteViewButton/>
                         <SaveViewButton/>
                         <CreateViewButton filterQuery={filterQuery}/>
                     </div>
                     <div className="form-group">
-                        <ToggleFiltersButton visible={visible}/>
                         <SubmitFiltersButton filters={filters}/>
+                        <ToggleFiltersButton visible={visible}/>
                     </div>
                 </div>
             ) : (
                 <div className="row">
                     <ViewSelector view={view} filters={filters}/>
+                    <SubmitFiltersButton filters={filters}/>
+                    {view.selected ? <DeleteViewButton view={view.selected}/> : null}
                     <ToggleFiltersButton visible={visible}/>
                 </div>
             )}

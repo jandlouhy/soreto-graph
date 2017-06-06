@@ -23,3 +23,10 @@ export function createView(name, filter) {
         })
     }
 }
+
+export function deleteView(view) {
+    return {
+        type: 'DELETE_VIEW',
+        payload: axios.delete('/Chart/DeleteView/' + view)
+    };
+}

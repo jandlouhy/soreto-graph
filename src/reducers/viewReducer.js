@@ -13,7 +13,6 @@ export default function viewReducer(state = {
             };
         }
         case 'FETCH_VIEWS_REJECTED': {
-            console.log('action.payload', action.payload);
             return {
                 ...state,
                 fetching: false,
@@ -32,6 +31,26 @@ export default function viewReducer(state = {
             return {
                 ...state,
                 selected: action.payload
+            };
+        }
+        case 'DELETE_VIEW_PENDING': {
+            return {
+                ...state,
+                fetching: true
+            };
+        }
+        case 'DELETE_VIEW_REJECTED': {
+            return {
+                ...state,
+                error: action.payload.response ? `Pohled se nepodařilo odstranit: ${action.payload.message}` : action.payload
+            };
+        }
+        case 'DELETE_VIEW_FULFILLED': {
+            return {
+                ...state,
+                fetching: false,
+                fetched: false,
+                items: [],
             };
         }
     }
