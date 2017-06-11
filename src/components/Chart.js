@@ -1,6 +1,7 @@
 import React from "react";
 import {Bar} from "react-chartjs-2";
 
+import ChartTable from "./ChartTable";
 import Loading from "./Loading";
 
 import store from "../store";
@@ -16,7 +17,7 @@ export default class Chart extends React.Component {
     componentWillMount() {
         const {graph, filters} = this.props;
 
-        if (!graph.fetched && !graph.error) {
+        if (!graph.fetched && !graph.fetching && !graph.error) {
             store.dispatch(fetchGraph(filters.filters))
         }
     }
@@ -26,7 +27,7 @@ export default class Chart extends React.Component {
     }
 
     render() {
-        const {fetching, data, options, error} = this.props.graph;
+        const {fetching, data, options, table, error} = this.props.graph;
 
         if (fetching) {
             return <Loading />;
@@ -40,7 +41,10 @@ export default class Chart extends React.Component {
 
         return <div className="row">
             <div className="col-sm-10 form-group">
-                <Bar data={data} options={options} ref={(chart) => { this.chart = chart }} />
+                <Bar data={data} options={options} ref={(chart) => {
+                    this.chart = chart
+                }}/>
+                <ChartTable data={table}/>
             </div>
             <div className="col-sm-2">
                 <div className="form-group">

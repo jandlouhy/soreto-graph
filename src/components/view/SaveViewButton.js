@@ -1,15 +1,15 @@
 import React from "react";
 
 import store from "../../store";
-import {fetchGraph} from "../../actions/graphActions";
+import {updateView} from "../../actions/viewActions";
 
 export default class SaveViewButton extends React.Component {
-    loadGraph() {
-        store.dispatch(fetchGraph(this.props.filters));
+    updateView() {
+        store.dispatch(updateView(this.props.view.value, this.props.filterQuery))
     }
 
     render() {
-        return <button className="btn btn-info" onClick={this.loadGraph.bind(this)}>
+        return <button className="btn btn-info" onClick={this.updateView.bind(this)}>
             Uložit pohled
         </button>;
     }

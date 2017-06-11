@@ -34,7 +34,7 @@ export default class DateRange extends React.Component {
             isOutsideRange: (day) => false,
         };
 
-        return <div className="col-xs-12 form-group">
+        return <div className="col-xs-12 col-sm-8 form-group">
             <label>
                 {label}
                 <div>

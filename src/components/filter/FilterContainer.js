@@ -16,16 +16,16 @@ export default class FilterContainer extends React.Component {
     componentWillMount() {
         const {filters} = this.props;
 
-        if (!filters.fetched && !filters.error) {
+        if (!filters.fetched && !filters.fetching && !filters.error) {
             store.dispatch(fetchFilters())
         }
     }
 
     render() {
-        const {fetching, visible, filters, error} = this.props.filters;
+        const {fetched, visible, filters, error} = this.props.filters;
         const {filterQuery, view} = this.props;
 
-        if (fetching || view.fetching) {
+        if (view.fetching) {
             return <Loading />;
         }
 
@@ -50,15 +50,22 @@ export default class FilterContainer extends React.Component {
                         {view.selected ? <DeleteViewButton view={view.selected}/> : null}
                         <ToggleFiltersButton visible={visible}/>
                     </div>
-                    {filterComponents}
-                    <div className="form-group">
-                        <SaveViewButton/>
-                        <CreateViewButton filterQuery={filterQuery}/>
-                    </div>
-                    <div className="form-group">
-                        <SubmitFiltersButton filters={filters}/>
-                        <ToggleFiltersButton visible={visible}/>
-                    </div>
+                    {fetched ? (
+                        <div>
+                            <br/>
+                            <div className="form-group">
+                                {view.selected ? <SaveViewButton view={view.selected} filterQuery={filterQuery}/> : null}
+                                <CreateViewButton filterQuery={filterQuery}/>
+                            </div>
+                            {filterComponents}
+                            <div className="form-group">
+                                <SubmitFiltersButton filters={filters}/>
+                                <ToggleFiltersButton visible={visible}/>
+                            </div>
+                        </div>
+                    ) : (
+                        <Loading />
+                    )}
                 </div>
             ) : (
                 <div className="row">

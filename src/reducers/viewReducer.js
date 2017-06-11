@@ -53,6 +53,46 @@ export default function viewReducer(state = {
                 items: [],
             };
         }
+        case 'CREATE_VIEW_PENDING': {
+            return {
+                ...state,
+                fetching: true
+            };
+        }
+        case 'CREATE_VIEW_REJECTED': {
+            return {
+                ...state,
+                error: action.payload.response ? `Nový pohled se nepodařilo vytvořit: ${action.payload.message}` : action.payload
+            };
+        }
+        case 'CREATE_VIEW_FULFILLED': {
+            return {
+                ...state,
+                fetching: false,
+                fetched: false,
+                items: [],
+            };
+        }
+        case 'UPDATE_VIEW_PENDING': {
+            return {
+                ...state,
+                fetching: true
+            };
+        }
+        case 'UPDATE_VIEW_REJECTED': {
+            return {
+                ...state,
+                error: action.payload.response ? `Změny v pohledu se nepodařilo uložit: ${action.payload.message}` : action.payload
+            };
+        }
+        case 'UPDATE_VIEW_FULFILLED': {
+            return {
+                ...state,
+                fetching: false,
+                fetched: false,
+                items: [],
+            };
+        }
     }
     return state;
 }

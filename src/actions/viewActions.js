@@ -16,7 +16,7 @@ export function changeView(id) {
 
 export function createView(name, filter) {
     return {
-        type: 'VIEW_CREATED',
+        type: 'CREATE_VIEW',
         payload: axios.post('/Chart/CreateView', {
             ...filter,
             viewName: name
@@ -24,9 +24,16 @@ export function createView(name, filter) {
     }
 }
 
-export function deleteView(view) {
+export function updateView(id, filter) {
+    return {
+        type: 'CREATE_VIEW',
+        payload: axios.put('/Chart/UpdateView/' + id, filter)
+    }
+}
+
+export function deleteView(id) {
     return {
         type: 'DELETE_VIEW',
-        payload: axios.delete('/Chart/DeleteView/' + view)
+        payload: axios.delete('/Chart/DeleteView/' + id)
     };
 }

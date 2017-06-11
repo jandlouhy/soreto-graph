@@ -25,8 +25,9 @@ export default function graphReducer(state = {
                 ...state,
                 fetching: false,
                 fetched: true,
-                data: action.payload.data.data,
-                options: action.payload.data.options,
+                data: action.payload.data.chartData.data,
+                options: action.payload.data.chartData.options,
+                table: action.payload.data.tableData
             };
         }
     }
