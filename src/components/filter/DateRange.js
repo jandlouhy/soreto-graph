@@ -34,19 +34,17 @@ export default class DateRange extends React.Component {
             isOutsideRange: (day) => false,
         };
 
-        return <div className="col-xs-12 col-sm-8 form-group">
-            <label>
+        return <div className="col-xs-12 col-sm-4">
+            <label style={{width: '100%'}} className="form-group">
                 {label}
-                <div>
-                    <DateRangePicker
-                        {...props}
-                        onDatesChange={this.onDatesChange}
-                        onFocusChange={this.onFocusChange}
-                        focusedInput={focusedInput}
-                        startDate={startDate}
-                        endDate={endDate}
-                    />
-                </div>
+                <DateRangePicker
+                    {...props}
+                    onDatesChange={this.onDatesChange}
+                    onFocusChange={this.onFocusChange}
+                    focusedInput={focusedInput}
+                    startDate={startDate}
+                    endDate={endDate}
+                />
             </label>
         </div>
     }

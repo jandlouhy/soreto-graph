@@ -81,3 +81,16 @@ function createOptionsBySelectedValues(options, selectedValues) {
         }
     });
 }
+
+export function changeDate(filter, payload) {
+    if (filter.id === payload.filter) {
+        return {
+            ...filter,
+            startDate: payload.startDate,
+            endDate: payload.endDate,
+        };
+    } else if (filter.children) {
+        filter.children = changeDate(filter.children, payload);
+    }
+    return filter;
+}

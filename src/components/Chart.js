@@ -40,11 +40,15 @@ export default class Chart extends React.Component {
         const filterQueryString = stringify(this.props.filterQuery);
 
         return <div className="row">
-            <div className="col-sm-10 form-group">
-                <Bar data={data} options={options} ref={(chart) => {
-                    this.chart = chart
-                }}/>
-                <ChartTable data={table}/>
+            <div className="col-sm-10">
+                <div className="form-group">
+                    <Bar data={data} options={options} ref={(chart) => {
+                        this.chart = chart
+                    }}/>
+                </div>
+                <div className="form-group">
+                    <ChartTable data={table}/>
+                </div>
             </div>
             <div className="col-sm-2">
                 <div className="form-group">

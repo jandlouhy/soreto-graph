@@ -1,4 +1,4 @@
-import {createFilter, reduceFilter} from "../utils/filter";
+import {createFilter, reduceFilter, changeDate} from "../utils/filter";
 
 export default function filtersReducer(state = {
     fetching: false,
@@ -38,16 +38,7 @@ export default function filtersReducer(state = {
         case 'FILTER_DATE_CHANGED': {
             return {
                 ...state,
-                filters: state.filters.map((filter) => {
-                    if (filter.id === action.payload.filter) {
-                        return {
-                            ...filter,
-                            startDate: action.payload.startDate,
-                            endDate: action.payload.endDate,
-                        };
-                    }
-                    return filter;
-                })
+                filters: state.filters.map((filter) => changeDate(filter, action.payload))
             }
         }
         case 'FILTERS_TOGGLE': {
