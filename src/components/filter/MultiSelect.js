@@ -5,7 +5,7 @@ import store from "../../store";
 import {changeFilter} from "../../actions/filtersActions";
 import createFilterOptions from 'react-select-fast-filter-options';
 
-export default class MultiSelect extends React.Component {
+export default class MultiSelect extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {input: ''};

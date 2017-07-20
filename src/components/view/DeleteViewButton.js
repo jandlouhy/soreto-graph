@@ -3,7 +3,7 @@ import React from "react";
 import store from "../../store";
 import {deleteView} from "../../actions/viewActions";
 
-export default class DeleteViewButton extends React.Component {
+export default class DeleteViewButton extends React.PureComponent {
     deleteView() {
         const {label, value} = this.props.view;
 

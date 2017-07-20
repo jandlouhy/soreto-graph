@@ -21,12 +21,22 @@ export default function graphReducer(state = {
             };
         }
         case 'FETCH_GRAPH_FULFILLED': {
+            let options = action.payload.data.chartData.options;
+            options.scales.yAxes.forEach((option) => {
+                if (option.id) {
+                    option.ticks.callback = function (value) {
+                        return value.toLocaleString();
+                    }
+                }
+                return option;
+            });
+
             return {
                 ...state,
                 fetching: false,
                 fetched: true,
                 data: action.payload.data.chartData.data,
-                options: action.payload.data.chartData.options,
+                options: options,
                 table: action.payload.data.tableData
             };
         }

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import moment from "moment";
 import {defaults} from "react-chartjs-2";
-
+import {CookiesProvider} from "react-cookie";
 
 import Layout from "./components/Layout";
 import store from "./store";
@@ -22,5 +22,7 @@ defaults.global.animation = false;
 const app = document.getElementById('app');
 ReactDOM.render(
     <Provider store={store}>
-        <Layout/>
+        <CookiesProvider>
+            <Layout/>
+        </CookiesProvider>
     </Provider>, app);

@@ -3,6 +3,7 @@ import axios from "axios";
 export function fetchFilters() {
     return {
         type: 'FETCH_FILTERS',
+        //payload: axios.get('http://localhost/api/filters.php')
         payload: axios.get('/Chart/GetFilters')
     };
 }

@@ -4,7 +4,7 @@ import VirtualizedSelect from "react-virtualized-select";
 import store from "../../store";
 import {changeFilter} from "../../actions/filtersActions";
 
-export default class Select extends React.Component {
+export default class Select extends React.PureComponent {
     handleSelectChange(value) {
         store.dispatch(changeFilter(this.name, [value.value]));
     }

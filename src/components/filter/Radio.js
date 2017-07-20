@@ -3,7 +3,7 @@ import React from "react";
 import store from "../../store";
 import {changeFilter} from "../../actions/filtersActions";
 
-export default class Select extends React.Component {
+export default class Select extends React.PureComponent {
     handleSelectChange(event) {
         store.dispatch(changeFilter(this.props.id, [event.target.value]));
     }

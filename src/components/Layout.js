@@ -6,7 +6,7 @@ import {buildFilterQueryObject} from "../utils/filterQuery";
 import ErrorAlert from "./ErrorAlert";
 import FilterContainer from "./filter/FilterContainer";
 import Loading from "./Loading";
-import Chart from "./Chart";
+import Chart from "./chart/ChartContainer";
 
 @connect((store) => {
     return {
@@ -20,7 +20,7 @@ export default class Layout extends React.Component {
     render() {
         const {filters, graph, filterQuery, view} = this.props;
 
-        if ((filters.fetching || view.fetching) && graph.fetching) {
+        if (filters.fetching && view.fetching && graph.fetching) {
             return <Loading/>;
         }
 
@@ -28,10 +28,12 @@ export default class Layout extends React.Component {
             .filter((prop) => prop.error)
             .map((prop) => ( <ErrorAlert key={prop.error.toString()} message={prop.error}/> ));
 
-        return <div>
-            {errors}
-            <FilterContainer filters={filters} filterQuery={filterQuery} view={view}/>
-            <Chart graph={graph} filters={filters} filterQuery={filterQuery}/>
-        </div>;
+        return (
+            <div>
+                {errors}
+                <FilterContainer filters={filters} view={view}/>
+                <Chart graph={graph} filters={filters} filterQuery={filterQuery}/>
+            </div>
+        );
     }
 }

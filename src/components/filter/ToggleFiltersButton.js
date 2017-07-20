@@ -3,7 +3,7 @@ import React from "react";
 import store from "../../store";
 import {toggleFilters} from "../../actions/filtersActions";
 
-export default class ToggleFiltersButton extends React.Component {
+export default class ToggleFiltersButton extends React.PureComponent {
     constructor(props) {
         super(props);
 

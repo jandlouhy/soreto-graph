@@ -5,7 +5,7 @@ import {changeFilterDate} from "../../actions/filtersActions";
 
 import {DateRangePicker} from "react-dates";
 
-export default class DateRange extends React.Component {
+export default class DateRange extends React.PureComponent {
     constructor(props) {
         super(props);
 

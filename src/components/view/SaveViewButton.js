@@ -3,9 +3,9 @@ import React from "react";
 import store from "../../store";
 import {updateView} from "../../actions/viewActions";
 
-export default class SaveViewButton extends React.Component {
+export default class SaveViewButton extends React.PureComponent {
     updateView() {
-        store.dispatch(updateView(this.props.view.value, this.props.filterQuery))
+        store.dispatch(updateView(this.props.view.value, this.props.filters))
     }
 
     render() {

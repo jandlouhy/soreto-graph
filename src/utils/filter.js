@@ -27,20 +27,22 @@ export function createFilter(filter) {
     return filter;
 }
 
-export function reduceFilter(payload, filter, values) {
+export function reduceFilter(payload, filter, values, parentChanged = false) {
     let children = filter.children;
+    const changed = filter.id === payload.filter;
 
-    if (filter.id === payload.filter) {
-        values = filter.values.map((value) => {
-            return {
-                ...value,
-                selected: typeof (payload.values.find((option) => option === value.value)) !== 'undefined'
-            }
-        });
+    if (changed) {
+        values = filter.values.map((value) => ({
+            ...value,
+            selected: typeof (payload.values.find((option) => option === value.value)) !== 'undefined'
+        }));
     }
 
     if (children && children.values) {
-        children = reduceFilter(payload, children, reduceFilterChildrenValues(values, children));
+        const reduceChildren = changed || parentChanged;
+        const childrenValues = reduceChildren ? reduceFilterChildrenValues(values, children) : children.values;
+
+        children = reduceFilter(payload, children, childrenValues, reduceChildren);
     }
 
     return {...filter, values: values, children: children};

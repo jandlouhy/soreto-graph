@@ -3,10 +3,12 @@ import React from "react";
 import store from "../../store";
 import {createView} from "../../actions/viewActions";
 
-export default class CreateViewButton extends React.Component {
+export default class CreateViewButton extends React.PureComponent {
     saveView() {
         const name = prompt('Zadejte název pro nový pohled.');
-        store.dispatch(createView(name, this.props.filterQuery))
+        if (name) {
+            store.dispatch(createView(name, this.props.filters));
+        }
     }
 
     render() {

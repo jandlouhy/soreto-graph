@@ -1,9 +1,16 @@
 import axios from "axios";
 
+import {buildFilterQueryObject} from "../utils/filterQuery";
+
 export function fetchViews() {
     return {
         type: 'FETCH_VIEWS',
-        payload: axios.get('/Chart/GetViews')
+        //payload: axios.get('http://localhost/api/view.php', {
+        payload: axios.get('/Chart/GetViews', {
+            params: {
+                t: Date.now()
+            }
+        })
     };
 }
 
@@ -14,20 +21,26 @@ export function changeView(id) {
     }
 }
 
-export function createView(name, filter) {
+export function createView(name, filters) {
     return {
         type: 'CREATE_VIEW',
-        payload: axios.post('/Chart/CreateView', {
-            ...filter,
-            viewName: name
+        payload: axios.get('/Chart/CreateView', {
+            params: {
+                ...buildFilterQueryObject(filters),
+                viewName: name
+            },
         })
     }
 }
 
-export function updateView(id, filter) {
+export function updateView(id, filters) {
     return {
         type: 'CREATE_VIEW',
-        payload: axios.put('/Chart/UpdateView/' + id, filter)
+        payload: axios.get('/Chart/UpdateView/' + id, {
+            params: {
+                ...buildFilterQueryObject(filters)
+            },
+        })
     }
 }
 
