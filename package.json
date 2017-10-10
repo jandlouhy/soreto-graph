@@ -21,7 +21,8 @@
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
-    "dev": "node_modules/.bin/webpack-dev-server --content-base dist --inline --hot --open"
+    "dev": "node_modules/.bin/webpack-dev-server --content-base dist --inline --hot --open",
+    "prod": "node_modules/.bin/webpack -p"
   },
   "author": "",
   "license": "ISC",

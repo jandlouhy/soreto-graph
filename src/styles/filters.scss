@@ -1,0 +1,31 @@
+.Select--multi .Select-value {
+  background-color: #ffe8bc;
+  border-radius: 2px;
+  border: 1px solid #ffd299;
+  color: #e48806;
+}
+
+.Select--multi .Select-value-icon {
+  border-right: 1px solid #ffd299;
+}
+
+.Select--multi .Select-value-icon:hover,
+.Select--multi .Select-value-icon:focus {
+  background-color: #e48806;
+  color: #ffe8bc;
+}
+
+.Select--multi .Select-value-icon:active {
+  background-color: #ffe8bc;
+}
+
+.has-value.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
+.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+  color: #ffe8bc;
+}
+
+.VirtualizedSelectFocusedOption {
+  background-color: #ffe8bc;
+}

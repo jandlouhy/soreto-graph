@@ -1,24 +1,24 @@
-import {createFilter, reduceFilter, changeDate} from "../utils/filter";
+import { changeDate, createFilter, reduceFilter } from '../utils/filter';
 
 export default function filtersReducer(state = {
     fetching: false,
     fetched: false,
     visible: false,
     filters: [],
-    error: null
+    error: null,
 }, action) {
     switch (action.type) {
         case 'FETCH_FILTERS_PENDING': {
             return {
                 ...state,
-                fetching: true
+                fetching: true,
             };
         }
         case 'FETCH_FILTERS_REJECTED': {
             return {
                 ...state,
                 fetching: false,
-                error: action.payload.response ? `Filtry se nepodařilo načíst: ${action.payload.message}` : action.payload
+                error: action.payload.response ? `Filtry se nepodařilo načíst: ${action.payload.message}` : action.payload,
             };
         }
         case 'FETCH_FILTERS_FULFILLED': {
@@ -26,26 +26,27 @@ export default function filtersReducer(state = {
                 ...state,
                 fetching: false,
                 fetched: true,
-                filters: action.payload.data.map((filter) => createFilter(filter))
+                filters: action.payload.data.map((filter) => createFilter(filter)),
             };
         }
         case 'FILTER_CHANGED': {
+            console.log(state.filters);
             return {
                 ...state,
-                filters: state.filters.map((filter) => reduceFilter(action.payload, filter, filter.values))
+                filters: state.filters.map((filter) => reduceFilter(action.payload, filter, filter.values)),
             };
         }
         case 'FILTER_DATE_CHANGED': {
             return {
                 ...state,
-                filters: state.filters.map((filter) => changeDate(filter, action.payload))
-            }
+                filters: state.filters.map((filter) => changeDate(filter, action.payload)),
+            };
         }
         case 'FILTERS_TOGGLE': {
             return {
                 ...state,
-                visible: action.payload.visible
-            }
+                visible: action.payload.visible,
+            };
         }
     }
     return state;
