@@ -25,28 +25,24 @@ export default class ChartContainer extends React.PureComponent {
         }
     }
 
-    componentDidMount() {
-        this.timeout = setTimeout(this.generateImage.bind(this), 500);
-    }
-
     componentWillUnmount() {
         clearTimeout(this.timeout);
         this.refs.chart.chart_instance = null;
     }
 
     generateImage() {
+        clearTimeout(this.timeout);
+
         if (this.refs.chart && this.refs.chart.chart_instance) {
             const image = this.refs.chart.chart_instance.toBase64Image();
             this.setState({ chartImage: image });
 
             if (image.length > 10) {
-                clearTimeout(this.timeout);
-            } else {
-                this.timeout = setTimeout(this.generateImage.bind(this), 100);
+                return;
             }
-        } else {
-            this.timeout = setTimeout(this.generateImage.bind(this), 500);
         }
+
+        this.timeout = setTimeout(this.generateImage.bind(this), 500);
     }
 
     render() {
@@ -63,6 +59,9 @@ export default class ChartContainer extends React.PureComponent {
 
         const filterQueryString = stringify(this.props.filterQuery);
         const chartVisibilityClass = chartImage ? '' : 'hidden';
+
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(this.generateImage.bind(this), 500);
 
         return (
             <div className="row">
