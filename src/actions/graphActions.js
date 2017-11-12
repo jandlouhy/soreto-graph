@@ -7,7 +7,10 @@ export function fetchGraph(filters) {
         type: 'FETCH_GRAPH',
         //payload: axios.get('http://localhost/api/graph.php', {
         payload: axios.get('/Chart/GetFilteredData', {
-            params: buildFilterQueryObject(filters)
+            params: {
+              ... buildFilterQueryObject(filters),
+              timestamp: (new Date()).getTime()
+            }
         })
     };
 }
